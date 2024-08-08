@@ -98,6 +98,17 @@
     writing-mode: vertical-rl;
     text-orientation: mixed;
   }
+
+  .floating-navbar {
+    background-color: rgba(var(--background), 0.95);
+  }
+
+  @supports (backdrop-filter: blur(4px)) {
+    .floating-navbar {
+      background-color: rgba(var(--background), 0.8);
+      backdrop-filter: blur(4px);
+    }
+  }
 }
 
 @keyframes blink {

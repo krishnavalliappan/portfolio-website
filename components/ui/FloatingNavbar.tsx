@@ -42,6 +42,7 @@ export const FloatingNav = ({
       transition={{ duration: 0.3 }}
       className={cn(
         "fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md z-50 border-b border-primary/10",
+        "floating-navbar", // Add this class for the fallback styles
         className
       )}
     >
