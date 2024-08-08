@@ -2,32 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #0a192f;
+    --foreground: #e6f1ff;
+
+    --card: #112240;
+    --card-foreground: #a8b2d1;
+
+    --popover: #112240;
+    --popover-foreground: #e6f1ff;
+
+    --primary: #64ffda;
+    --primary-foreground: #0a192f;
+
+    --secondary: #233554;
+    --secondary-foreground: #a8b2d1;
+
+    --muted: #233554;
+    --muted-foreground: #8892b0;
+
+    --accent: #ffd700;
+    --accent-foreground: #0a192f;
+
+    --destructive: #ff6b6b;
+    --destructive-foreground: #0a192f;
+
+    --border: #1e2d3d;
+    --input: #1e2d3d;
+    --ring: #64ffda;
+
+    --radius: 0.5rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  }
+  button {
+    @apply active:outline-none;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .heading {
+    @apply font-bold text-4xl md:text-5xl text-center;
+  }
+
+  .black-gradient {
+    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+  }
+
+  .animate-blink {
+    animation: blink 1s step-start infinite;
+  }
+
+  .writing-vertical-rl {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
