@@ -23,7 +23,7 @@ export const projects: Project[] = [
   description: "A single-page application portfolio website built using Next.js, TailwindCSS, and shadcn/ui components.",
   icon: FaReact,
   technologies: ["Next.js", "React", "TypeScript", "TailwindCSS", "shadcn/ui"],
-  githubLink: "https://github.com/yourusername/portfolio-website",
+  githubLink: "https://github.com/krishnavalliappan/portfolio",
   skills: [
     {name: "Frontend Development"},
     { name: "UI/UX Design"},

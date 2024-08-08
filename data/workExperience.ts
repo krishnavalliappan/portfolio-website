@@ -40,7 +40,7 @@ export const workExperiences: WorkExperience[] = [
   {
     company: "IA Flow Elements",
     position: "Associate Data Analyst",
-    duration: "September 2020 – July 2022",
+    duration: "April 2020 – July 2022",
     year: 2020,
     description: [
       "Engineered a predictive model using machine learning algorithms to forecast sales trends, enhancing decision-making accuracy and contributing to a 15% uplift in sales projections accuracy.",
@@ -61,8 +61,8 @@ export const workExperiences: WorkExperience[] = [
   },
   {
     company: "IA Flow Elements",
-    position: "Design Engineer",
-    duration: "June 2019 – August 2020",
+    position: "CAD Designer",
+    duration: "June 2019 – March 2020",
     year: 2019,
     description: [
       "Designed flow elements according to provided specifications using RW Miller software, improving product performance in the oil & gas sector.",
