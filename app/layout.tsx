@@ -4,7 +4,7 @@ import { inter, jetbrain_mono } from "@/app/fonts";
 import "./globals.css";
 import { ThemeProvider } from "@/app/ThemeProvider";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import { FaHome, FaUser, FaBriefcase, FaCode } from 'react-icons/fa';
+import { FaHome, FaUser, FaBriefcase, FaCode } from "react-icons/fa";
 import StickyIcons from "@/components/sections/StickyIcons";
 import Footer from "@/components/sections/Footer";
 
@@ -33,7 +33,7 @@ const navItems = [
     name: "Work",
     link: "#work",
     icon: <FaBriefcase />,
-  }
+  },
 ];
 
 export default function RootLayout({
@@ -44,9 +44,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="./favicon-32x32.png"
+        />
+        <meta property="og:title" content="Krishnakumar" />
+        <meta
+          property="og:description"
+          content="Krishnakumar's personal portfolio"
+        />
+        <meta property="og:url" content="https://krishnakumar.dev" />
+        <meta
+          property="og:image"
+          content="https://krishnakumar.dev/public/pics/photo.png"
+        />
+        <meta property="og:type" content="website" />
       </head>
-      <body className={`${jetbrain_mono.variable} ${inter.variable} font-mono antialiased`}>
+      <body
+        className={`${jetbrain_mono.variable} ${inter.variable} font-mono antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -54,9 +72,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <FloatingNav navItems={navItems} />
-          <StickyIcons/>
+          <StickyIcons />
           {children}
-          <Footer/>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
