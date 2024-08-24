@@ -7,6 +7,7 @@ import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { FaHome, FaUser, FaBriefcase, FaCode } from "react-icons/fa";
 import StickyIcons from "@/components/sections/StickyIcons";
 import Footer from "@/components/sections/Footer";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
   title: "Krishnakumar",
@@ -75,6 +76,7 @@ export default function RootLayout({
           <StickyIcons />
           {children}
           <Footer />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
