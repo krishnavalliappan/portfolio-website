@@ -33,7 +33,7 @@ const StyledPic: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <Image
-            src="./pics/photo.png"
+            src="/pics/photo.png"
             alt="Profile"
             fill
             className="rounded-lg object-cover"

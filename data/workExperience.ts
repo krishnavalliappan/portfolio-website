@@ -35,7 +35,7 @@ export const workExperiences: WorkExperience[] = [
       { name: "Teaching", icon: FaChalkboardTeacher },
       { name: "Mathematics", icon: PiMathOperationsFill },
     ],
-    logo: "./logos/concordia-university.png" // Add the path to the Concordia University logo
+    logo: "/logos/concordia-university.png" // Add the path to the Concordia University logo
   },
   {
     company: "IA Flow Elements",
@@ -57,7 +57,7 @@ export const workExperiences: WorkExperience[] = [
       { name: "AWS", icon: FaAws },
       { name: "Data Visualization", icon: FaChartBar },
     ],
-    logo: "./logos/ia-flow.png"
+    logo: "/logos/ia-flow.png"
   },
   {
     company: "IA Flow Elements",
@@ -74,6 +74,6 @@ export const workExperiences: WorkExperience[] = [
       { name: "Technical Documentation", icon: FaChartBar },
       { name: "Client Communication", icon: FaBriefcase },
     ],
-    logo: "./logos/ia-flow.png"
+    logo: "/logos/ia-flow.png"
   }
 ];
