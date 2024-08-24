@@ -50,15 +50,15 @@ export default function RootLayout({
           sizes="32x32"
           href="./favicon-32x32.png"
         />
-        <meta property="og:title" content="Krishnakumar" />
+        <meta property="og:title" content="Krishnakumar's Portfolio" />
         <meta
-          property="og:description"
-          content="Krishnakumar's personal portfolio"
-        />
+  property="og:description"
+  content="Data analyst with a passion for web development and machine learning. Transforming complex data into actionable insights and building innovative web solutions."
+/>
         <meta property="og:url" content="https://krishnakumar.dev" />
         <meta
           property="og:image"
-          content="https://krishnakumar.dev/public/pics/photo.png"
+          content="https://krishnakumar.dev/pics/web_screenshot.png"
         />
         <meta property="og:type" content="website" />
       </head>
