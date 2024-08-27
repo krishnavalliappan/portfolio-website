@@ -53,19 +53,21 @@ export default function RootLayout({
         />
         <meta property="og:title" content="Krishnakumar's Portfolio" />
         <meta
-  property="og:description"
-  content="Data analyst with a passion for web development and machine learning. Transforming complex data into actionable insights and building innovative web solutions."
-/>
+          property="og:description"
+          content="Data analyst with a passion for web development and machine learning. Transforming complex data into actionable insights and building innovative web solutions."
+        />
         <meta property="og:url" content="https://krishnakumar.dev" />
         <meta
           property="og:image"
           content="https://krishnakumar.dev/pics/web_screenshot.png"
         />
-        <script>
-    if (window.location.href === "https://krishnavalliappan.github.io/portfolio-website/") {
-      window.location.replace("https://www.krishnakumar.dev");
-    }
-  </script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            if (window.location.href === "https://krishnavalliappan.github.io/portfolio-website/") {
+              window.location.replace("https://www.krishnakumar.dev");
+            }
+          `
+        }} />
         <meta property="og:type" content="website" />
       </head>
       <body
