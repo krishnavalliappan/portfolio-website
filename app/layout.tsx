@@ -61,6 +61,11 @@ export default function RootLayout({
           property="og:image"
           content="https://krishnakumar.dev/pics/web_screenshot.png"
         />
+        <script>
+    if (window.location.href === "https://krishnavalliappan.github.io/portfolio-website/") {
+      window.location.replace("https://www.krishnakumar.dev");
+    }
+  </script>
         <meta property="og:type" content="website" />
       </head>
       <body
