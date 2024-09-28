@@ -5,9 +5,10 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type MediaFile = {
-  type: "image" | "video";
+  type: 'image' | 'video';
   src: string;
 };
+
 
 function getExtension(filename: string): string {
   return filename.substring(filename.lastIndexOf(".")).toLowerCase();
@@ -22,12 +23,13 @@ export default function PhotoSlideshow({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const media: MediaFile[] = mediaFiles
-    .map((src) => {
-      const ext = getExtension(src);
-      const type = ext === ".mp4" ? "video" : "image";
-      return { type, src };
-    })
-    .sort((a, b) => (a.type === "video" ? -1 : 1));
+  .map((src): MediaFile => {
+    const ext = getExtension(src);
+    const type = ext === '.mp4' ? 'video' : 'image';
+    return { type, src };
+  })
+  .sort((a, b) => (a.type === 'video' ? -1 : 1));
+
 
   const currentMedia = media[index];
 
