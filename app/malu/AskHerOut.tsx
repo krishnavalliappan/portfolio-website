@@ -106,7 +106,7 @@ function DatePlan() {
         transition={{ delay: 1.5 }}
         className="mt-6 text-red-600 font-semibold"
       >
-        Can't wait to spend this special time with you, wrapped in warmth and love! ❤️
+       Can&apos;t wait to spend this special time with you, wrapped in warmth and love! ❤️
       </motion.p>
     </div>
   );

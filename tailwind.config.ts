@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { pacifico } from "./app/fonts";
 
 const svgToDataUri = require("mini-svg-data-uri");
 
@@ -28,7 +29,9 @@ const config = {
     extend: {
       fontFamily: {
         mono: ['var(--font-jetbrain-mono)'],
-        inter: ['var(--font-inter)']
+        inter: ['var(--font-inter)'],
+        pacifico: ['var(--font-pacifico)'],
+        roboto: ['var(--font-roboto)'],
       },
       colors: {
         black: {

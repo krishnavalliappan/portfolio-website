@@ -8,6 +8,7 @@ import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import StickyIcons from "@/components/sections/StickyIcons";
 import Footer from "@/components/sections/Footer";
 import { Analytics } from "@vercel/analytics/react";
+import { pacifico, roboto } from './fonts'
 
 export const metadata = {
   title: "Krishnakumar",
@@ -28,7 +29,7 @@ export default function RootLayout({
           sizes="32x32"
           href="./favicon-32x32.png"
         />
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+        
 
         <meta property="og:title" content="Krishnakumar's Portfolio" />
         <meta
@@ -52,7 +53,7 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
       </head>
       <body
-        className={`${jetbrain_mono.variable} ${inter.variable} font-mono antialiased`}
+        className={`${jetbrain_mono.variable} ${inter.variable } ${pacifico.variable} ${roboto.variable} font-mono antialiased`}
       >
         <ThemeProvider
           attribute="class"

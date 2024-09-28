@@ -15,3 +15,19 @@ export const jetbrain_mono = JetBrains_Mono({
   display: 'swap',
   adjustFontFallback: false
 })
+
+import { Pacifico, Roboto } from 'next/font/google'
+
+export const pacifico = Pacifico({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-pacifico',
+  display: 'swap',
+})
+
+export const roboto = Roboto({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+  display: 'swap',
+})
