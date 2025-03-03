@@ -1,57 +1,108 @@
-# Personal Portfolio Website
+# Portfolio Website
 
-This is a personal portfolio website built with Next.js, React, and Tailwind CSS.
+A modern, responsive portfolio website built with Next.js, React, TypeScript, and Tailwind CSS.
 
-## Description
+## Project Structure
 
-This project is a responsive, single-page application that showcases my skills, projects, and work experience. It features a modern design with interactive elements and smooth animations.
+The project follows a clean, organized structure:
 
-## Features
+- `app/` - Next.js App Router pages and layouts
+- `components/` - Reusable React components
+  - `ui/` - UI components (buttons, inputs, cards, etc.)
+  - `common/` - Common components used across sections
+  - `sections/` - Page sections (hero, about, projects, etc.)
+- `hooks/` - Custom React hooks
+- `utils/` - Utility functions
+- `data/` - Data files and constants
+- `lib/` - Shared libraries and services
+- `public/` - Static assets
 
-- Responsive design
-- Interactive terminal-like component
-- Animated sections
-- Project showcase
-- Work experience timeline
-- Skills grid
-- Dark mode support
+## Key Features
+
+- Modern UI with smooth animations using Framer Motion
+- Responsive design for all device sizes
+- Dark/light mode support
+- Interactive components
+- SEO optimized
+- Performance optimized
 
 ## Technologies Used
 
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- React Icons
+- **Next.js 14** - React framework with App Router
+- **React 18** - UI library
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS
+- **Framer Motion** - Animations
+- **shadcn/ui** - UI component library
+- **Vercel Analytics** - Performance monitoring
 
 ## Getting Started
 
-1. Clone the repository:
+### Prerequisites
 
-`git clone https://github.com/krishnavalliappan/portfolio`
+- Node.js 18+
+- npm or yarn
 
-2. Install dependencies:
+### Installation
 
-`cd portfolio npm install`
+1. Clone the repository
 
-3. Run the development server:
-   `npm run dev`
+```bash
+git clone https://github.com/yourusername/portfolio-website.git
+cd portfolio-website
+```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
 
-## Customization
+```bash
+npm install
+# or
+yarn install
+```
 
-To customize the content of the portfolio:
+3. Run the development server
 
-- Edit the project data in `data/projects.ts`
-- Update work experience in `data/workExperience.ts`
-- Modify component content in the respective files under `components/`
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Deployment
 
-This project can be easily deployed on Vercel or any other platform that supports Next.js applications.
+The site is configured for easy deployment on Vercel:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+## Project Structure Details
+
+### Components
+
+- **UI Components**: Reusable UI elements like cards, buttons, etc.
+- **Common Components**: Shared components used across different sections
+- **Section Components**: Major page sections like Hero, About, Projects, etc.
+
+### Hooks
+
+- `use-scroll-section.ts` - Hook for scroll-based animations
+- `use-media-query.ts` - Hook for responsive design
+- `use-outside-click.ts` - Hook for detecting clicks outside elements
+
+### Data
+
+- `projects.ts` - Project information
+- `workExperience.ts` - Work experience information
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+MIT
+
+## Author
+
+Krishnakumar Valliappan

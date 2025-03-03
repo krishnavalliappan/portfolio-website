@@ -3,34 +3,34 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+  .light {
+    --background: #f5f8ff;
+    --foreground: #0a192f;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card: #ffffff;
+    --card-foreground: #4a5568;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover: #ffffff;
+    --popover-foreground: #0a192f;
 
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
+    --primary: #0a9e88;
+    --primary-foreground: #ffffff;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: #e6f1ff;
+    --secondary-foreground: #4a5568;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: #e6eeff;
+    --muted-foreground: #64748b;
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: #ffc107;
+    --accent-foreground: #ffffff;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --border: #d1ddf5;
+    --input: #d1ddf5;
+    --ring: #0a9e88;
 
     --radius: 0.5rem;
   }
@@ -109,6 +109,10 @@
       backdrop-filter: blur(4px);
     }
   }
+
+  .mac-dock-bounce {
+    animation: dock-bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 
 @keyframes blink {
@@ -120,5 +124,15 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes dock-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }

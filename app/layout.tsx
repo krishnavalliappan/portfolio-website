@@ -1,16 +1,14 @@
-// app/layout.tsx
-import type { Metadata } from "next";
 import { inter, jetbrain_mono } from "@/app/fonts";
 import "./globals.css";
 import { ThemeProvider } from "@/app/ThemeProvider";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { FaHome, FaUser, FaBriefcase, FaCode } from "react-icons/fa";
 import StickyIcons from "@/components/sections/StickyIcons";
-import Footer from "@/components/sections/Footer";
-import { Analytics } from "@vercel/analytics/react"
+import{ NavBar} from "@/components/sections/NavBar"
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
-  title: "Krishnakumar",
+  title: "Krishnakumar Valliappan",
   description: "Personal portfolio of Krishnakumar",
 };
 
@@ -61,28 +59,28 @@ export default function RootLayout({
           property="og:image"
           content="https://krishnakumar.dev/pics/web_screenshot.png"
         />
-        <script dangerouslySetInnerHTML={{
-          __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             if (window.location.href === "https://krishnavalliappan.github.io/portfolio-website/") {
               window.location.replace("https://www.krishnakumar.dev");
             }
-          `
-        }} />
+          `,
+          }}
+        />
         <meta property="og:type" content="website" />
       </head>
       <body
-        className={`${jetbrain_mono.variable} ${inter.variable} font-mono antialiased`}
-      >
+        className={`${jetbrain_mono.variable} ${inter.variable} font-mono antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
-          disableTransitionOnChange
-        >
+          disableTransitionOnChange>
           <FloatingNav navItems={navItems} />
           <StickyIcons />
           {children}
-          <Footer />
+          <NavBar/>
           <Analytics />
         </ThemeProvider>
       </body>
