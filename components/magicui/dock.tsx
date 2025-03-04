@@ -98,7 +98,6 @@ const DockIcon = ({
   const ref = useRef<HTMLDivElement>(null);
   const padding = Math.max(4, size * 0.15);
   const defaultMouseX = useMotionValue(Infinity);
-  const [isHovered, setIsHovered] = useState(false);
 
   const distanceCalc = useTransform(mouseX ?? defaultMouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
@@ -121,8 +120,6 @@ const DockIcon = ({
         "flex aspect-square cursor-pointer items-center justify-center rounded-full transition-colors duration-300 hover:bg-primary/10 dark:hover:bg-primary/20",
         className
       )}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
       onTap={() => {
         const element = ref.current;
         if (element) {
