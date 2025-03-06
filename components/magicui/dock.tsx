@@ -20,7 +20,7 @@ const DEFAULT_MAGNIFICATION = 60;
 const DEFAULT_DISTANCE = 140;
 
 const dockVariants = cva(
-  "supports-backdrop-blur:bg-background/60 supports-backdrop-blur:dark:bg-background/40 mx-auto mt-8 flex h-[58px] w-max items-center justify-center gap-1 rounded-full border border-border/50 p-2 backdrop-blur-md shadow-lg"
+  "supports-backdrop-blur:bg-background/60 supports-backdrop-blur:dark:bg-background/40 mx-auto mt-8 flex h-[58px] w-max items-center justify-center gap-0.5 rounded-full border border-border/50 p-2 backdrop-blur-md shadow-lg"
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -96,7 +96,7 @@ const DockIcon = ({
   ...props
 }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const padding = Math.max(4, size * 0.15);
+  const padding = Math.max(2, size * 0.1);
   const defaultMouseX = useMotionValue(Infinity);
 
   const distanceCalc = useTransform(mouseX ?? defaultMouseX, (val: number) => {
@@ -120,15 +120,6 @@ const DockIcon = ({
         "flex aspect-square cursor-pointer items-center justify-center rounded-full transition-colors duration-300 hover:bg-primary/10 dark:hover:bg-primary/20",
         className
       )}
-      onTap={() => {
-        const element = ref.current;
-        if (element) {
-          element.classList.add("mac-dock-bounce");
-          setTimeout(() => {
-            element.classList.remove("mac-dock-bounce");
-          }, 500);
-        }
-      }}
       {...props}
     >
       {children}
