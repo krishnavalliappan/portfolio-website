@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { NowPlaying, SpotifyData } from "./NowPlaying";
 import { WeatherWidget } from "./WeatherWidget";
 import { ActivityWidget } from "./ActivityWidget";
@@ -23,14 +23,17 @@ export function DynamicStatusWidget({ className }: DynamicStatusWidgetProps) {
   const [spotifyData, setSpotifyData] = useState<SpotifyData | null>(null);
   const [spotifyLoading, setSpotifyLoading] = useState(true);
 
+  // Use a ref to track if we should allow automatic rotation
+  const allowRotation = useRef(true);
+  // Track last Spotify status change time
+  const lastSpotifyStatusChange = useRef(Date.now());
+
   // Fetch Spotify data
-  const fetchSpotifyData = async () => {
+  const fetchSpotifyData = useCallback(async () => {
     setSpotifyLoading(true);
     try {
-      console.log("Fetching Spotify data...");
       const timestamp = new Date().getTime();
       const url = `/api/spotify?t=${timestamp}`;
-      console.log(`Requesting: ${url}`);
 
       const response = await fetch(url, {
         method: "GET",
@@ -41,62 +44,61 @@ export function DynamicStatusWidget({ className }: DynamicStatusWidgetProps) {
         },
       });
 
-      console.log(`Spotify API response status: ${response.status}`);
-
       if (!response.ok) {
         const errorText = await response.text();
-        console.error(`Spotify API error (${response.status}): ${errorText}`);
         throw new Error(`Spotify API responded with status: ${response.status}, message: ${errorText}`);
       }
 
       const data = await response.json();
-      console.log("Spotify data received:", data);
 
       // Check if we got a valid response with isPlaying field
       if (data && typeof data.isPlaying !== "undefined") {
-        // Update playing status
-        const wasPlaying = isSpotifyPlaying;
-        const nowPlaying = data.isPlaying || false;
-        setIsSpotifyPlaying(nowPlaying);
+        // Check if Spotify status changed
+        if (data.isPlaying !== isSpotifyPlaying) {
+          lastSpotifyStatusChange.current = Date.now();
 
-        // If music just started playing and we're not showing Spotify, switch to it
-        if (!wasPlaying && nowPlaying) {
-          console.log("Music started playing, switching to Spotify widget");
-          setCurrentWidget("spotify");
+          // If music just started playing, switch to Spotify widget and pause rotation temporarily
+          if (data.isPlaying && !isSpotifyPlaying) {
+            setCurrentWidget("spotify");
+            allowRotation.current = false;
+
+            // Re-enable rotation after 10 seconds
+            setTimeout(() => {
+              allowRotation.current = true;
+            }, 10000);
+          }
+
+          // If music stopped and we're showing Spotify, switch to another widget
+          if (!data.isPlaying && isSpotifyPlaying && currentWidget === "spotify") {
+            setCurrentWidget(Math.random() > 0.5 ? "weather" : "activity");
+          }
         }
 
-        // If the music stopped playing and we're showing Spotify, switch to another widget
-        if (wasPlaying && !nowPlaying && currentWidget === "spotify") {
-          console.log("Music stopped playing, switching away from Spotify widget");
-          setCurrentWidget(Math.random() > 0.5 ? "weather" : "activity");
-        }
-
+        // Update state
+        setIsSpotifyPlaying(data.isPlaying || false);
         setSpotifyData(data);
       } else {
-        console.warn("Spotify API returned unexpected data format:", data);
         setIsSpotifyPlaying(false);
         setSpotifyData(null);
 
-        // If we're currently showing Spotify, switch to another widget
+        // If we're showing Spotify but there's no data, switch to another widget
         if (currentWidget === "spotify") {
           setCurrentWidget(Math.random() > 0.5 ? "weather" : "activity");
         }
       }
     } catch (error) {
       console.error("Error fetching Spotify data:", error);
-
-      // If we're currently showing Spotify, switch to another widget
-      if (currentWidget === "spotify") {
-        console.log("Error occurred, switching away from Spotify widget");
-        setCurrentWidget(Math.random() > 0.5 ? "weather" : "activity");
-      }
-
       setIsSpotifyPlaying(false);
       setSpotifyData(null);
+
+      // If we're showing Spotify but there's an error, switch to another widget
+      if (currentWidget === "spotify") {
+        setCurrentWidget(Math.random() > 0.5 ? "weather" : "activity");
+      }
     } finally {
       setSpotifyLoading(false);
     }
-  };
+  }, [isSpotifyPlaying, currentWidget]);
 
   // Fetch Spotify data on component mount and set up polling
   useEffect(() => {
@@ -104,15 +106,22 @@ export function DynamicStatusWidget({ className }: DynamicStatusWidgetProps) {
     fetchSpotifyData();
 
     // Set up polling to refresh data every 30 seconds
-    const spotifyIntervalId = setInterval(fetchSpotifyData, 30000);
+    const spotifyIntervalId = setInterval(() => {
+      fetchSpotifyData();
+    }, 30000);
 
     return () => clearInterval(spotifyIntervalId);
-  }, []);
+  }, [fetchSpotifyData]);
 
-  // Shuffle widgets
+  // Widget rotation logic
   useEffect(() => {
     // Set up interval to shuffle widgets every 5 seconds
     const intervalId = setInterval(() => {
+      // Skip rotation if it's temporarily disabled or if it's been less than 5 seconds since Spotify status changed
+      if (!allowRotation.current || Date.now() - lastSpotifyStatusChange.current < 5000) {
+        return;
+      }
+
       setCurrentWidget((prev) => {
         // Only include Spotify in rotation if music is playing
         const availableWidgets = isSpotifyPlaying ? ["spotify", "weather", "activity"] : ["weather", "activity"];
@@ -124,6 +133,8 @@ export function DynamicStatusWidget({ className }: DynamicStatusWidgetProps) {
 
         // Normal rotation - pick next widget that's not the current one
         const filteredWidgets = availableWidgets.filter((widget) => widget !== prev);
+        if (filteredWidgets.length === 0) return prev; // Safety check
+
         return filteredWidgets[Math.floor(Math.random() * filteredWidgets.length)] as
           | "spotify"
           | "weather"
